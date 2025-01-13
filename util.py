@@ -20,6 +20,25 @@ def load_config(config_file=None):
     with open(config_file, 'r', encoding='utf-8') as file:
         return yaml.safe_load(file)
 
+def get_topic_ids():
+    topic_configs = load_config()["data_topics"]
+    return [topic for topic in topic_configs.keys()]
+
+def get_topic_names():
+    topic_configs = load_config()["data_topics"]
+    return [topic["topic_name"] for topic in topic_configs.values()]
+
+def get_topic_id_from_name(topic_name):
+    """
+    Assumes unique topic names
+    :param topic_name:
+    :return:
+    """
+    topic_configs = load_config()["data_topics"]
+    for topic in topic_configs:
+        if topic["topic_name"] == topic_name:
+            return topic["id"]
+    return None
 
 def open_csv_file(data_source):
     base_path = os.path.dirname(__file__)  # Get current file directory

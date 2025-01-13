@@ -1,45 +1,86 @@
 data_topics:
-  afd:
-    topic_dir: "data/afd"
-    allowed_domains: [ ]
-    start_urls: [ ]
-    non_content_phrases: [ ]
-    black_listed_imgs: [ ]
-  bsw:
-    topic_dir: "data/bsw"
-    allowed_domains: [ ]
-    start_urls: [ ]
-    non_content_phrases: [ ]
-    black_listed_imgs: [ ]
-  fdp:
-    topic_dir: "data/fdp"
-    allowed_domains: [ ]
-    start_urls: [ ]
-    non_content_phrases: [ ]
-    black_listed_imgs: [ ]
-  gruene:
-    topic_dir: "data/gruene"
-    allowed_domains: [ ]
-    start_urls: [ ]
-    non_content_phrases: [ ]
-    black_listed_imgs: [ ]
-  linke:
-    topic_dir: "data/linke"
-    allowed_domains: [ ]
-    start_urls: [ ]
-    non_content_phrases: [ ]
-    black_listed_imgs: [ ]
-  spd:
-    topic_dir: "data/spd"
-    allowed_domains: [ ]
-    start_urls: [ ]
-    non_content_phrases: [ ]
-    black_listed_imgs: [ ]
-  union:
-    topic_dir: "data/union"
-    allowed_domains: []
-    start_urls: []
-    non_content_phrases: []
-    black_listed_imgs: []
-
-default_topic: "union"
+  abc-news:
+    topic_dir: data/abc-news
+    topic_name: ABC News
+  al-jazeera-english:
+    topic_dir: data/al-jazeera-english
+    topic_name: Al Jazeera English
+  associated-press:
+    topic_dir: data/associated-press
+    topic_name: Associated Press
+  bleacher-report:
+    topic_dir: data/bleacher-report
+    topic_name: Bleacher Report
+  breitbart-news:
+    topic_dir: data/breitbart-news
+    topic_name: Breitbart News
+  business-insider:
+    topic_dir: data/business-insider
+    topic_name: Business Insider
+  buzzfeed:
+    topic_dir: data/buzzfeed
+    topic_name: Buzzfeed
+  cbs-news:
+    topic_dir: data/cbs-news
+    topic_name: CBS News
+  cnn:
+    topic_dir: data/cnn
+    topic_name: CNN
+  espn-cric-info:
+    topic_dir: data/espn-cric-info
+    topic_name: ESPN Cric Info
+  fortune:
+    topic_dir: data/fortune
+    topic_name: Fortune
+  fox-news:
+    topic_dir: data/fox-news
+    topic_name: Fox News
+  fox-sports:
+    topic_dir: data/fox-sports
+    topic_name: Fox Sports
+  google-news:
+    topic_dir: data/google-news
+    topic_name: Google News
+  hacker-news:
+    topic_dir: data/hacker-news
+    topic_name: Hacker News
+  mashable:
+    topic_dir: data/mashable
+    topic_name: Mashable
+  medical-news-today:
+    topic_dir: data/medical-news-today
+    topic_name: Medical News Today
+  msnbc:
+    topic_dir: data/msnbc
+    topic_name: MSNBC
+  national-geographic:
+    topic_dir: data/national-geographic
+    topic_name: National Geographic
+  nbc-news:
+    topic_dir: data/nbc-news
+    topic_name: NBC News
+  new-scientist:
+    topic_dir: data/new-scientist
+    topic_name: New Scientist
+  new-york-magazine:
+    topic_dir: data/new-york-magazine
+    topic_name: New York Magazine
+  next-big-future:
+    topic_dir: data/next-big-future
+    topic_name: Next Big Future
+  nhl-news:
+    topic_dir: data/nhl-news
+    topic_name: NHL News
+  polygon:
+    topic_dir: data/polygon
+    topic_name: Polygon
+  techcrunch:
+    topic_dir: data/techcrunch
+    topic_name: TechCrunch
+  techradar:
+    topic_dir: data/techradar
+    topic_name: TechRadar
+  the-verge:
+    topic_dir: data/the-verge
+    topic_name: The Verge
+default_topic: all

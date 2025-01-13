@@ -4,13 +4,16 @@ import os
 import shutil
 import yaml
 from langchain.schema.document import Document
+from openai import embeddings
 from tqdm import tqdm
 
 import fitz
 import tiktoken
 
-from embedding_function import get_embedding_function
+from .embedding_function import get_embedding_function, EmbeddingFunction
 from langchain_community.vectorstores import Chroma
+
+from util import load_config
 
 WHITE = "\033[97m"
 BLUE = "\033[34m"
@@ -19,20 +22,9 @@ ORANGE = "\033[38;5;208m"
 PINK = "\033[38;5;205m"
 RESET = "\033[0m"
 
-def load_config(config_file=None):
-    if config_file is None:
-        config_file = 'config.yaml'
-
-    base_path = os.path.dirname(__file__)  # Get current file directory
-    config_file = os.path.join(base_path, config_file)
-
-    with open(config_file, 'r', encoding='utf-8') as file:
-        return yaml.safe_load(file)
-
-def populate_db():
+def main():
     config = load_config()
     data_topics = config['data_topics']
-    default_topic = config['default_topic']
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
@@ -40,20 +32,29 @@ def populate_db():
     parser.add_argument("--topic", choices=data_topics.keys(), help="Select the data topic.")
     args = parser.parse_args()
 
-    selected_topic = args.topic if args.topic else default_topic
+    populate_db(topic=args.topic, reset=args.reset, debug=args.debug)
+
+
+def populate_db(topic :str = None, reset :bool = False, debug :bool = False):
+    config = load_config()
+    data_topics = config['data_topics']
+    default_topic = config['default_topic']
+
+    selected_topic = topic if topic else default_topic
 
     if selected_topic == "all":
         for topic in data_topics:
             print(f"\n{GREEN}📚  Processing: {topic}{RESET}")
             topic_config = data_topics[topic]
             topic_dir = topic_config['topic_dir']
-            populater = DatabaseManager(topic_dir, args.reset, args.debug)
+            populater = DatabaseManager(topic_dir, reset, debug)
             populater.save_data()
+            del populater
     else:
         topic_config = data_topics[selected_topic]
         topic_dir = topic_config['topic_dir']
 
-        populater = DatabaseManager(topic_dir, args.reset, args.debug)
+        populater = DatabaseManager(topic_dir, reset, debug)
         populater.save_data()
 
 
@@ -84,6 +85,7 @@ class DatabaseManager:
         self.url_mapping = self.load_url_mapping()
 
         self.db = Chroma(persist_directory=self.chroma_dir, embedding_function=get_embedding_function())
+        self.embedder = EmbeddingFunction()
 
         self.predefined_ids = self.get_predefined_ids()
 
@@ -307,4 +309,4 @@ class DatabaseManager:
 
 
 if __name__ == "__main__":
-    populate_db()
+    main()

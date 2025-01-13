@@ -1,0 +1,17 @@
+requests
+beautifulsoup4
+tqdm
+pyyaml
+openai
+langchain~=0.2.0
+langchain_community
+chromadb
+chroma-hnswlib==0.7.3
+PyMuPDF
+tiktoken
+scikit-learn
+pandas
+plotly
+numpy
+dash
+matplotlib
